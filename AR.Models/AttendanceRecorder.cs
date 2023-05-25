@@ -1,26 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AR.Models
+namespace AR.Data
 {
-    public class StudentAttendanceRecord
+    public class StudentAttendanceRecords
     {
         public string StudentName { get; }
-        public List<AttendanceRecord> AttendanceRecords { get; }
+        public List<AttendanceRecords> AttendanceRecords { get; }
 
-        public StudentAttendanceRecord(string studentName)
+        public StudentAttendanceRecords(string studentName)
         {
             StudentName = studentName;
-            AttendanceRecords = new List<AttendanceRecord>();
+            AttendanceRecords = new List<AttendanceRecords>();
         }
     }
-
-    public class AttendanceRecord
+    public class AttendanceRecords
     {
         public DateTime Time { get; }
         public string Status { get; }
 
-        public AttendanceRecord(DateTime time, string status)
+        public AttendanceRecords(DateTime time, string status)
         {
             Time = time;
             Status = status;
