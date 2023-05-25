@@ -6,13 +6,18 @@ namespace AR.Business
 {
     public class AttendanceManager
     {
-        private List<StudentAttendanceRecords> attendanceRecords = new List<StudentAttendanceRecords>();
+        //private List<GetStudentName> studentList = new List<GetStudentName>();
 
-        public void InitializeStudents()
+        //public void InMemoryData()
+        //{
+        //    studentList.Add(new GetStudentName("Nico Ampoloquio"));
+        //    studentList.Add(new GetStudentName("Joanvic Vargas"));
+        //    studentList.Add(new GetStudentName("Mekaila Aguila"));
+        //}
+
+        public void InMemoryDataStudents()
         {
-            attendanceRecords.Add(new StudentAttendanceRecords("Nico Ampoloquio"));
-            attendanceRecords.Add(new StudentAttendanceRecords("Joanvic Vargas"));
-            attendanceRecords.Add(new StudentAttendanceRecords("Mekaila Aguila"));
+            throw new NotImplementedException();
         }
 
         public void MarkAttendance()
@@ -20,7 +25,7 @@ namespace AR.Business
             Console.Write("Enter student name: ");
             string studentName = Console.ReadLine();
 
-            StudentAttendanceRecords studentRecord = attendanceRecords.Find(record => record.StudentName == studentName);
+            GetStudentName studentRecord = studentList.Find(record => record.StudentName == studentName);
 
             if (studentRecord == null)
             {
@@ -63,7 +68,7 @@ namespace AR.Business
             Console.Write("Enter student name: ");
             string studentName = Console.ReadLine();
 
-            StudentAttendanceRecords studentRecord = attendanceRecords.Find(record => record.StudentName == studentName);
+            GetStudentName studentRecord = studentList.Find(record => record.StudentName == studentName);
 
             if (studentRecord == null)
             {
@@ -81,13 +86,13 @@ namespace AR.Business
         {
             Console.WriteLine("Attendance records for all students:");
 
-            if (attendanceRecords.Count == 0)
+            if (studentList.Count == 0)
             {
                 Console.WriteLine("No attendance records found for any student.");
                 return;
             }
 
-            foreach (var student in attendanceRecords)
+            foreach (var student in studentList)
             {
                 Console.WriteLine($"Student: {student.StudentName}");
                 foreach (var record in student.AttendanceRecords)
