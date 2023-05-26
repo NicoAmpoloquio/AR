@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AR.Data\AR.Data.csproj" />
+    <ProjectReference Include="..\Attendance_Models\Attendance_Models.csproj" />
   </ItemGroup>
 
 </Project>
