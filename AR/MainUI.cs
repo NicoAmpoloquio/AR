@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+
 class AttendanceRecorder
 {
-    static List<addStudent> attendanceRecords = new List<addStudent>();
+    static List<StudentAttendanceRecord> attendanceRecords = new List<StudentAttendanceRecord>();
 
     static void Main(string[] args)
     {
-        Console.WriteLine("Attendance is a Must, attendance muna bago umalis mga ya.");
-        Console.WriteLine("-------------------------------------------");
-
         InitializeStudents();
 
         while (true)
@@ -45,9 +43,9 @@ class AttendanceRecorder
 
     static void InitializeStudents()
     {
-        attendanceRecords.Add(new addStudent("Nico Ampoloquio"));
-        attendanceRecords.Add(new addStudent("Joanvic Vargas"));
-        attendanceRecords.Add(new addStudent("Mekaila Aguila"));
+        attendanceRecords.Add(new StudentAttendanceRecord("Nico Ampoloquio"));
+        attendanceRecords.Add(new StudentAttendanceRecord("Joanvic Vargas"));
+        attendanceRecords.Add(new StudentAttendanceRecord("Mekaila Aguila"));
     }
 
     static void MarkAttendance()
@@ -55,7 +53,7 @@ class AttendanceRecorder
         Console.Write("Enter student name: ");
         string studentName = Console.ReadLine();
 
-        addStudent studentRecord = attendanceRecords.Find(record => record.StudentName == studentName);
+        StudentAttendanceRecord studentRecord = attendanceRecords.Find(record => record.StudentName == studentName);
 
         if (studentRecord == null)
         {
@@ -99,7 +97,7 @@ class AttendanceRecorder
         Console.Write("Enter student name: ");
         string studentName = Console.ReadLine();
 
-        addStudent studentRecord = attendanceRecords.Find(record => record.StudentName == studentName);
+        StudentAttendanceRecord studentRecord = attendanceRecords.Find(record => record.StudentName == studentName);
 
         if (studentRecord == null)
         {
@@ -136,12 +134,12 @@ class AttendanceRecorder
     }
 }
 
-class addStudent
+class StudentAttendanceRecord
 {
     public string StudentName { get; }
     public List<AttendanceRecord> AttendanceRecords { get; }
 
-    public addStudent(string studentName)
+    public StudentAttendanceRecord(string studentName)
     {
         StudentName = studentName;
         AttendanceRecords = new List<AttendanceRecord>();
