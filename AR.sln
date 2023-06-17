@@ -5,13 +5,13 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AttendanceRecorder", "AR\AttendanceRecorder.csproj", "{0A375AC0-8464-4871-B6C6-B76D53D4B596}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Attendance_BusinessLayer", "Attendance_BusinessLayer\Attendance_BusinessLayer.csproj", "{50CE8E23-6F39-441A-A69C-6C445BC140F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Attendance_BusinessLayer", "Attendance_BusinessLayer\Attendance_BusinessLayer.csproj", "{50CE8E23-6F39-441A-A69C-6C445BC140F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Attendance_DataLayer", "Attendance_DataLayer\Attendance_DataLayer.csproj", "{09C3F714-4AEC-444B-8B1B-5FB80905D22C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Attendance_DataLayer", "Attendance_DataLayer\Attendance_DataLayer.csproj", "{09C3F714-4AEC-444B-8B1B-5FB80905D22C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Attendance_Models", "Attendance_Models\Attendance_Models.csproj", "{068B574D-77C5-450E-BFB9-D5F238F01F19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Attendance_Models", "Attendance_Models\Attendance_Models.csproj", "{068B574D-77C5-450E-BFB9-D5F238F01F19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Attendance_UserInterface", "Attendance_UserInterface\Attendance_UserInterface.csproj", "{B183D8AA-450F-46FB-95E4-D83BDF47C738}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Attendance_UserInterface", "Attendance_UserInterface\Attendance_UserInterface.csproj", "{B183D8AA-450F-46FB-95E4-D83BDF47C738}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
