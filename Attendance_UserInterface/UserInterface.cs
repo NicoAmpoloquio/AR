@@ -78,46 +78,6 @@ namespace Attendance_UserInterface
         public static void AttendanceStatusChoices()
         {
 
-            //Console.Write("Enter student name: ");
-            //string studentName = Console.ReadLine();
-
-            //StudentAttendanceRecord studentRecord = Students.StudentList.Find(record => record.StudentName == studentName);
-
-            //if (studentRecord == null)
-            //{
-            //    Console.WriteLine("Invalid student name! Attendance not marked.");
-            //    return;
-            //}
-
-            //Console.WriteLine("Select attendance status:");
-            //Console.WriteLine("1. Present");
-            //Console.WriteLine("2. Absent");
-            //Console.WriteLine("3. Excused");
-            //Console.Write("Enter your choice: ");
-            //string statusChoice = Console.ReadLine();
-
-            //string attendanceStatus;
-
-            //switch (statusChoice)
-            //{
-            //    case "1":
-            //        attendanceStatus = "Present";
-            //        break;
-            //    case "2":
-            //        attendanceStatus = "Absent";
-            //        break;
-            //    case "3":
-            //        attendanceStatus = "Excused";
-            //        break;
-            //    default:
-            //        Console.WriteLine("Invalid choice! Attendance not marked.");
-            //        return;
-            //}
-
-            //DateTime currentTime = DateTime.Now;
-
-            //studentRecord.StudentList.Add(new RecordDateTime(currentTime, attendanceStatus));
-            //Console.WriteLine("Attendance marked successfully.");
         }
     }
     public class UserInterfaceView
