@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Attendance_DataLayer", "Att
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Attendance_Models", "Attendance_Models\Attendance_Models.csproj", "{068B574D-77C5-450E-BFB9-D5F238F01F19}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Attendance_UserInterface", "Attendance_UserInterface\Attendance_UserInterface.csproj", "{B183D8AA-450F-46FB-95E4-D83BDF47C738}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +33,6 @@ Global
 		{068B574D-77C5-450E-BFB9-D5F238F01F19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{068B574D-77C5-450E-BFB9-D5F238F01F19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{068B574D-77C5-450E-BFB9-D5F238F01F19}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B183D8AA-450F-46FB-95E4-D83BDF47C738}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B183D8AA-450F-46FB-95E4-D83BDF47C738}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B183D8AA-450F-46FB-95E4-D83BDF47C738}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B183D8AA-450F-46FB-95E4-D83BDF47C738}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

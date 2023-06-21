@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using Attendance_BusinessLayer;
 using Attendance_DataLayer;
-using Attendance_UserInterface;
+using Attendance_Models;
+using Attendance_BusinessLayer;
 
-namespace Attendance
+namespace AttendanceRecorder
 {
     internal class MainProgram
     {
@@ -27,10 +26,10 @@ namespace Attendance
                         AttendanceManager.RecordAttendance();
                         break;
                     case "2":
-                        AttendanceManager.ViewAttendanceRecordsByStudent();
+                        UserInterfaceView.ViewAttendanceRecordsByStudent();
                         break;
                     case "3":
-                        AttendanceManager.ViewAttendanceRecordsForAllStudents();
+                        UserInterfaceView.ViewAttendanceRecordsForAllStudents();
                         break;
                     case "4":
                         AttendanceManager.EditAttendance();
