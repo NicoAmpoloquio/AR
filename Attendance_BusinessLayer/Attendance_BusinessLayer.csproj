@@ -5,9 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AR\AttendanceRecorder.csproj" />
     <ProjectReference Include="..\Attendance_DataLayer\Attendance_DataLayer.csproj" />
     <ProjectReference Include="..\Attendance_Models\Attendance_Models.csproj" />
+    <ProjectReference Include="..\UserInterface\UserInterface.csproj" />
   </ItemGroup>
 
 </Project>

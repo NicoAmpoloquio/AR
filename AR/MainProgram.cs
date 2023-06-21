@@ -2,6 +2,7 @@
 using Attendance_DataLayer;
 using Attendance_Models;
 using Attendance_BusinessLayer;
+using UserInterface;
 
 namespace AttendanceRecorder
 {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Attendance_DataLayer;
 using Attendance_Models;
-using AttendanceRecorder;
+using UserInterface;
 
 namespace Attendance_BusinessLayer
 {
