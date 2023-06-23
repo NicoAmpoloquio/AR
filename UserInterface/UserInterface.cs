@@ -59,8 +59,7 @@ namespace UserInterface
         }
     }
     public class UserInterfaceView
-    {
-        
+    {   
         public static void DisplayAttendanceRecords(string studentName, List<RecordDateTime> records)
         {
             Console.WriteLine($"Attendance records for {studentName}:");
