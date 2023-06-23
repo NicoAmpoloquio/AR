@@ -100,6 +100,50 @@ namespace Attendance_BusinessLayer
 
             UserInterfaceRecord.DisplayAttendanceEditSuccessMessage();
         }
+        public static void ViewAttendanceRecordsByStudent()
+        {
+            Console.Write("Enter student name: ");
+            string studentName = Console.ReadLine();
+
+            Console.Write("Enter student number: ");
+            string studentNumber = Console.ReadLine();
+
+            StudentAttendanceRecord studentRecord = Students.StudentList.Find(record => record.StudentName == studentName && record.StudentNumber == studentNumber);
+
+            if (studentRecord == null)
+            {
+                Console.WriteLine("No attendance records found for this student.");
+                return;
+            }
+
+            Console.WriteLine($"Attendance records for {studentName} ({studentNumber}):");
+            foreach (var record in studentRecord.StudentList)
+            {
+                Console.WriteLine($"Date: {record.Time.ToShortDateString()}, Time: {record.Time.ToShortTimeString()}, Status: {record.Status}");
+            }
+
+            UserInterfaceView.DisplayAttendanceRecords(studentName, studentRecord.StudentList);
+        }
+        public static void ViewAttendanceRecordsForAllStudents()
+        {
+            Console.WriteLine("Attendance records for all students:");
+
+            if (Students.StudentList.Count == 0)
+            {
+                Console.WriteLine("No attendance records found for any student.");
+                return;
+            }
+
+            foreach (var student in Students.StudentList)
+            {
+                Console.WriteLine($"Student: {student.StudentName}");
+                foreach (var record in student.StudentList)
+                {
+                    Console.WriteLine($"Date: {record.Time.ToShortDateString()}, Time: {record.Time.ToShortTimeString()}, Status: {record.Status}");
+                }
+                Console.WriteLine();
+            }
+        }
     }
 }
 

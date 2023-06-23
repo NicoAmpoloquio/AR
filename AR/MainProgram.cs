@@ -27,10 +27,10 @@ namespace AttendanceRecorder
                         AttendanceManager.RecordAttendance();
                         break;
                     case "2":
-                        UserInterfaceView.ViewAttendanceRecordsByStudent();
+                        AttendanceManager.ViewAttendanceRecordsByStudent();
                         break;
                     case "3":
-                        UserInterfaceView.ViewAttendanceRecordsForAllStudents();
+                        AttendanceManager.ViewAttendanceRecordsForAllStudents();
                         break;
                     case "4":
                         AttendanceManager.EditAttendance();
