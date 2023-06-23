@@ -36,10 +36,10 @@ namespace AttendanceRecorder
                         AttendanceManager.EditAttendance();
                         break;
                     case "5":
-                        UserInterfaceMenu.DisplayExitMessage();
+                        UserInterfaceMessage.DisplayExitMessage();
                         return;
                     default:
-                        UserInterfaceMenu.DisplayInvalidChoiceMessage();
+                        UserInterfaceMessage.DisplayInvalidChoiceMessage();
                         break;
                 }
             }

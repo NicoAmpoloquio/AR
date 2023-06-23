@@ -21,7 +21,7 @@ namespace Attendance_BusinessLayer
 
             if (studentRecord == null)
             {
-                UserInterfaceRecord.DisplayInvalidStudentNameMessage();
+                UserInterfaceMessage.DisplayInvalidStudentNameMessage();
                 return;
             }
 
@@ -30,14 +30,14 @@ namespace Attendance_BusinessLayer
 
             if (!Enum.TryParse(statusChoice, out AttendanceStatus attendanceStatus))
             {
-                UserInterfaceRecord.DisplayInvalidChoiceMessage();
+                UserInterfaceMessage.DisplayInvalidChoiceMessage();
                 return;
             }
 
             DateTime currentTime = DateTime.Now;
 
             studentRecord.StudentList.Add(new RecordDateTime(currentTime, studentName, studentNumber, attendanceStatus));
-            UserInterfaceRecord.DisplayAttendanceMarkedMessage();
+            UserInterfaceMessage.DisplayAttendanceMarkedMessage();
         }
         public static void EditAttendance()
         {
@@ -51,7 +51,7 @@ namespace Attendance_BusinessLayer
 
             if (studentRecord == null)
             {
-                UserInterfaceRecord.AttendanceStatus();
+                UserInterfaceMessage.AttendanceStatus();
                 return;
             }
 
@@ -68,7 +68,7 @@ namespace Attendance_BusinessLayer
 
             if (!int.TryParse(editChoice, out int selectedIndex))
             {
-                UserInterfaceRecord.DisplayAttendanceInvalidEditMessage();
+                UserInterfaceMessage.DisplayAttendanceInvalidEditMessage();
                 return;
             }
 
@@ -92,27 +92,27 @@ namespace Attendance_BusinessLayer
 
             if (!Enum.TryParse(statusChoice, out AttendanceStatus newStatus))
             {
-                UserInterfaceRecord.DisplayAttendanceInvalidEditMessage();
+                UserInterfaceMessage.DisplayAttendanceInvalidEditMessage();
                 return;
             }
 
             selectedRecord.Status = newStatus;
 
-            UserInterfaceRecord.DisplayAttendanceEditSuccessMessage();
+            UserInterfaceMessage.DisplayAttendanceEditSuccessMessage();
         }
         public static void ViewAttendanceRecordsByStudent()
         {
-            Console.Write("Enter student name: ");
+            UserInterfaceRecord.GetStudentName();
             string studentName = Console.ReadLine();
 
-            Console.Write("Enter student number: ");
+            UserInterfaceRecord.GetStudentNumber();
             string studentNumber = Console.ReadLine();
 
             StudentAttendanceRecord studentRecord = Students.StudentList.Find(record => record.StudentName == studentName && record.StudentNumber == studentNumber);
 
             if (studentRecord == null)
             {
-                Console.WriteLine("No attendance records found for this student.");
+                UserInterfaceMessage.DisplayNoRecordsFoundMessage();
                 return;
             }
 

@@ -23,14 +23,6 @@ namespace UserInterface
             Console.WriteLine("5. Exit");
             Console.Write("Enter your choice: ");
         }
-        public static void DisplayExitMessage()
-        {
-            Console.WriteLine("Bounce program na par...");
-        }
-        public static void DisplayInvalidChoiceMessage()
-        {
-            Console.WriteLine("Invalid choice, please try again.");
-        }
     }
     public class UserInterfaceRecord
     {
@@ -49,6 +41,44 @@ namespace UserInterface
             Console.WriteLine("2. Absent");
             Console.WriteLine("3. Excused");
             Console.Write("Enter your choice: ");
+        }
+    }
+    public class UserInterfaceEdit
+    {
+        public static void EditCancel()
+        {
+            Console.WriteLine("Attendance edit canceled.");
+        }
+        public static void DisplayInvalidIndex()
+        {
+            Console.WriteLine("Invalid index! Attendance not edited.");
+        }
+        public static void EnterIndex()
+        {
+            Console.Write("Enter the index of the attendance record to edit (-1 to cancel): ");
+        }
+    }
+    public class UserInterfaceView
+    {
+        
+        public static void DisplayAttendanceRecords(string studentName, List<RecordDateTime> records)
+        {
+            Console.WriteLine($"Attendance records for {studentName}:");
+            foreach (var record in records)
+            {
+                Console.WriteLine($"Date: {record.Time.ToShortDateString()}, Time: {record.Time.ToShortTimeString()}, Status: {record.Status}");
+            }
+        }
+    }
+    public class UserInterfaceMessage
+    {
+        public static void DisplayExitMessage()
+        {
+            Console.WriteLine("Bounce program na par...");
+        }
+        public static void DisplayTryAgainMessage()
+        {
+            Console.WriteLine("Invalid choice, please try again.");
         }
         public static void DisplayInvalidStudentNameMessage()
         {
@@ -74,35 +104,9 @@ namespace UserInterface
         {
             Console.WriteLine("No attendance records found for this student.");
         }
-    }
-    public class UserInterfaceEdit
-    {
-        public static void EditCancel()
-        {
-            Console.WriteLine("Attendance edit canceled.");
-        }
-        public static void DisplayInvalidIndex()
-        {
-            Console.WriteLine("Invalid index! Attendance not edited.");
-        }
-        public static void EnterIndex()
-        {
-            Console.Write("Enter the index of the attendance record to edit (-1 to cancel): ");
-        }
-    }
-    public class UserInterfaceView
-    {
         public static void DisplayNoRecordsFoundMessage()
         {
             Console.WriteLine("No attendance records found for this student.");
-        }
-        public static void DisplayAttendanceRecords(string studentName, List<RecordDateTime> records)
-        {
-            Console.WriteLine($"Attendance records for {studentName}:");
-            foreach (var record in records)
-            {
-                Console.WriteLine($"Date: {record.Time.ToShortDateString()}, Time: {record.Time.ToShortTimeString()}, Status: {record.Status}");
-            }
         }
     }
 }
