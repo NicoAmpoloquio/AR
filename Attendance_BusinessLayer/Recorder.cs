@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using Attendance_DataLayer;
 using Attendance_Models;
-using Attendance_UserInterface;
+using UserInterface;
 
 namespace Attendance_BusinessLayer
 {
     public class AttendanceManager
     {
+        public static List<StudentAttendanceRecord> StudentList = new List<StudentAttendanceRecord>();
         public static void RecordAttendance()
         {
-            string studentName = UserInterfaceRecord.GetStudentName();
+            UserInterfaceRecord.GetStudentName();
+            string studentName = Console.ReadLine();
 
-            StudentAttendanceRecord studentRecord = Students.StudentList.Find(record => record.StudentName == studentName);
+            UserInterfaceRecord.GetStudentNumber();
+            string studentNumber = Console.ReadLine();
+
+            StudentAttendanceRecord studentRecord = Students.StudentList.Find(record => record.StudentName == studentName && record.StudentNumber == studentNumber);
 
             if (studentRecord == null)
             {
@@ -20,198 +25,80 @@ namespace Attendance_BusinessLayer
                 return;
             }
 
-            string statusChoice = UserInterfaceRecord.GetAttendanceStatus();
-            string attendanceStatus;
+            UserInterfaceRecord.GetAttendanceStatus();
+            string statusChoice = Console.ReadLine();
 
-            switch (statusChoice)
+            if (!Enum.TryParse(statusChoice, out AttendanceStatus attendanceStatus))
             {
-                case "1":
-                    attendanceStatus = "Present";
-                    break;
-                case "2":
-                    attendanceStatus = "Absent";
-                    break;
-                case "3":
-                    attendanceStatus = "Excused";
-                    break;
-                default:
-                    UserInterfaceRecord.DisplayInvalidChoiceMessage();
-                    return;
+                UserInterfaceRecord.DisplayInvalidChoiceMessage();
+                return;
             }
 
             DateTime currentTime = DateTime.Now;
 
-            studentRecord.StudentList.Add(new RecordDateTime(currentTime, attendanceStatus));
+            studentRecord.StudentList.Add(new RecordDateTime(currentTime, studentName, studentNumber, attendanceStatus));
             UserInterfaceRecord.DisplayAttendanceMarkedMessage();
-
-            //Console.Write("Enter student name: ");
-            //string studentName = Console.ReadLine();
-
-            //StudentAttendanceRecord studentRecord = Students.StudentList.Find(record => record.StudentName == studentName);
-
-            //if (studentRecord == null)
-            //{
-            //    Console.WriteLine("Invalid student name! Attendance not marked.");
-            //    return;
-            //}
-
-            //Console.WriteLine("Select attendance status:");
-            //Console.WriteLine("1. Present");
-            //Console.WriteLine("2. Absent");
-            //Console.WriteLine("3. Excused");
-            //Console.Write("Enter your choice: ");
-            //string statusChoice = Console.ReadLine();
-
-            //string attendanceStatus;
-
-            //switch (statusChoice)
-            //{
-            //    case "1":
-            //        attendanceStatus = "Present";
-            //        break;
-            //    case "2":
-            //        attendanceStatus = "Absent";
-            //        break;
-            //    case "3":
-            //        attendanceStatus = "Excused";
-            //        break;
-            //    default:
-            //        Console.WriteLine("Invalid choice! Attendance not marked.");
-            //        return;
-            //}
-
-            //DateTime currentTime = DateTime.Now;
-
-            //studentRecord.StudentList.Add(new RecordDateTime(currentTime, attendanceStatus));
-            //Console.WriteLine("Attendance marked successfully.");
-        }
-        public static void ViewAttendanceRecordsByStudent()
-        {
-            string studentName = UserInterfaceRecord.GetStudentName();
-
-            StudentAttendanceRecord studentRecord = Students.StudentList.Find(record => record.StudentName == studentName);
-
-            if (studentRecord == null)
-            {
-                UserInterfaceView.DisplayNoRecordsFoundMessage();
-                return;
-            }
-
-            UserInterfaceView.DisplayAttendanceRecords(studentName, studentRecord.StudentList);
-            //Console.Write("Enter student name: ");
-            //string studentName = Console.ReadLine();
-
-            //StudentAttendanceRecord studentRecord = Students.StudentList.Find(record => record.StudentName == studentName);
-
-            //if (studentRecord == null)
-            //{
-            //    Console.WriteLine("No attendance records found for this student.");
-            //    return;
-            //}
-
-            //Console.WriteLine($"Attendance records for {studentName}:");
-            //foreach (var record in studentRecord.StudentList)
-            //{
-            //    Console.WriteLine($"Date: {record.Time.ToShortDateString()}, Time: {record.Time.ToShortTimeString()}, Status: {record.Status}");
-            //}
-        }
-        public static void ViewAttendanceRecordsForAllStudents()
-        {
-            //Console.WriteLine("Attendance records for all students:");
-
-            //if (studentList.Count == 0)
-            //{
-            //    Console.WriteLine("No attendance records found for any student.");
-            //    return;
-            //}
-
-            //foreach (var student in studentList)
-            //{
-            //    Console.WriteLine($"Student: {student.StudentName}");
-            //    foreach (var record in student.StudentList)
-            //    {
-            //        Console.WriteLine($"Date: {record.Time.ToShortDateString()}, Time: {record.Time.ToShortTimeString()}, Status: {record.Status}");
-            //    }
-            //    Console.WriteLine();
-            //}
-            Console.WriteLine("Attendance records for all students:");
-
-            if (Students.StudentList.Count == 0)
-            {
-                Console.WriteLine("No attendance records found for any student.");
-                return;
-            }
-
-            foreach (var student in Students.StudentList)
-            {
-                Console.WriteLine($"Student: {student.StudentName}");
-                foreach (var record in student.StudentList)
-                {
-                    Console.WriteLine($"Date: {record.Time.ToShortDateString()}, Time: {record.Time.ToShortTimeString()}, Status: {record.Status}");
-                }
-                Console.WriteLine();
-            }
         }
         public static void EditAttendance()
         {
-            Console.Write("Enter student name: ");
+            UserInterfaceRecord.GetStudentName();
             string studentName = Console.ReadLine();
 
-            StudentAttendanceRecord studentRecord = Students.StudentList.Find(record => record.StudentName == studentName);
+            UserInterfaceRecord.GetStudentNumber();
+            string studentNumber = Console.ReadLine();
+
+            StudentAttendanceRecord studentRecord = Students.StudentList.Find(record => record.StudentName == studentName && record.StudentNumber == studentNumber);
 
             if (studentRecord == null)
             {
-                Console.WriteLine("No attendance records found for this student.");
+                UserInterfaceRecord.AttendanceStatus();
                 return;
             }
 
-            Console.WriteLine($"Attendance records for {studentName}:");
-            for (int i = 0; i < studentRecord.StudentList.Count; i++)
+            Console.WriteLine($"Attendance records for {studentName} ({studentNumber}):");
+            int index = 0;
+            foreach (var record in studentRecord.StudentList)
             {
-                var record = studentRecord.StudentList[i];
-                Console.WriteLine($"{i + 1}. Date: {record.Time.ToShortDateString()}, Time: {record.Time.ToShortTimeString()}, Status: {record.Status}");
+                Console.WriteLine($"[{index}] Date: {record.Time.ToShortDateString()}, Time: {record.Time.ToShortTimeString()}, Status: {record.Status}");
+                index++;
             }
 
-            Console.Write("Enter the number of the record you want to edit: ");
-            string recordChoice = Console.ReadLine();
+            UserInterfaceEdit.EnterIndex();
+            string editChoice = Console.ReadLine();
 
-            if (!int.TryParse(recordChoice, out int recordIndex) || recordIndex < 1 || recordIndex > studentRecord.StudentList.Count)
+            if (!int.TryParse(editChoice, out int selectedIndex))
             {
-                Console.WriteLine("Invalid record number! Attendance not edited.");
+                UserInterfaceRecord.DisplayAttendanceInvalidEditMessage();
                 return;
             }
-            else
+
+            if (selectedIndex == -1)
             {
-                Console.WriteLine("Select new attendance status:");
-                Console.WriteLine("1. Present");
-                Console.WriteLine("2. Absent");
-                Console.WriteLine("3. Excused");
-                Console.Write("Enter your choice: ");
-                string statusChoice = Console.ReadLine();
-
-                string attendanceStatus;
-
-                switch (statusChoice)
-                {
-                    case "1":
-                        attendanceStatus = "Present";
-                        break;
-                    case "2":
-                        attendanceStatus = "Absent";
-                        break;
-                    case "3":
-                        attendanceStatus = "Excused";
-                        break;
-                    default:
-                        Console.WriteLine("Invalid choice! Attendance not edited.");
-                        return;
-                }
-                DateTime currentTime = DateTime.Now;
-
-                studentRecord.StudentList.Add(new RecordDateTime(currentTime, attendanceStatus));
+                UserInterfaceEdit.EditCancel();
+                return;
             }
 
-            Console.WriteLine("Attendance edited successfully.");
+            if (selectedIndex < 0 || selectedIndex >= studentRecord.StudentList.Count)
+            {
+                UserInterfaceEdit.DisplayInvalidIndex();
+                return;
+            }
+
+            RecordDateTime selectedRecord = studentRecord.StudentList[selectedIndex];
+
+            Console.WriteLine($"Editing attendance record: Date: {selectedRecord.Time.ToShortDateString()}, Time: {selectedRecord.Time.ToShortTimeString()}, Status: {selectedRecord.Status}");
+            UserInterfaceRecord.GetAttendanceStatus();
+            string statusChoice = Console.ReadLine();
+
+            if (!Enum.TryParse(statusChoice, out AttendanceStatus newStatus))
+            {
+                UserInterfaceRecord.DisplayAttendanceInvalidEditMessage();
+                return;
+            }
+
+            selectedRecord.Status = newStatus;
+
+            UserInterfaceRecord.DisplayAttendanceEditSuccessMessage();
         }
     }
 }

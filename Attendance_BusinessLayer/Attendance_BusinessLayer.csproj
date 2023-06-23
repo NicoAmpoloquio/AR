@@ -7,7 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Attendance_DataLayer\Attendance_DataLayer.csproj" />
     <ProjectReference Include="..\Attendance_Models\Attendance_Models.csproj" />
-    <ProjectReference Include="..\Attendance_UserInterface\Attendance_UserInterface.csproj" />
+    <ProjectReference Include="..\UserInterface\UserInterface.csproj" />
   </ItemGroup>
 
 </Project>
