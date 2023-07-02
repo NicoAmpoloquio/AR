@@ -6,7 +6,8 @@ namespace Attendance_DataLayer
 {
     public class Students
     {
-        public static List<StudentAttendanceRecord> StudentList = new List<StudentAttendanceRecord>();
+        private static List<StudentAttendanceRecord> StudentList = new List<StudentAttendanceRecord>();
+
         public static void InMemoryDataStudents()
         {
             StudentList.Add(new StudentAttendanceRecord("Nico Ampoloquio", "A001"));
@@ -15,6 +16,7 @@ namespace Attendance_DataLayer
             StudentList.Add(new StudentAttendanceRecord("Nelson James Abuan", "A004"));
             StudentList.Add(new StudentAttendanceRecord("Rose Joy Balonzo", "A005"));
             StudentList.Add(new StudentAttendanceRecord("Laurence Lagado", "A006"));
+            StudentList.Add(new StudentAttendanceRecord("Patricia Laine Sison", "A007"));
         }
     }
 }
