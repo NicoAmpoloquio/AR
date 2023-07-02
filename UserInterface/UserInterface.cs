@@ -147,6 +147,14 @@ namespace UserInterface
                 }
                 Console.WriteLine();
             }
+
+
+
+            RecordDateTime selectedRecord = studentRecord.StudentList[selectedIndex];
+
+            Console.WriteLine($"Editing attendance record: Date: {selectedRecord.Time.ToShortDateString()}, Time: {selectedRecord.Time.ToShortTimeString()}, Status: {selectedRecord.Status}");
+            UserInterfaceRecord.GetAttendanceStatus();
+            string statusChoice = Console.ReadLine();
         }
     }
 }

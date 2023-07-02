@@ -84,11 +84,11 @@ namespace Attendance_BusinessLayer
                 return;
             }
 
-            RecordDateTime selectedRecord = studentRecord.StudentList[selectedIndex];
+            //RecordDateTime selectedRecord = studentRecord.StudentList[selectedIndex];
 
-            Console.WriteLine($"Editing attendance record: Date: {selectedRecord.Time.ToShortDateString()}, Time: {selectedRecord.Time.ToShortTimeString()}, Status: {selectedRecord.Status}");
-            UserInterfaceRecord.GetAttendanceStatus();
-            string statusChoice = Console.ReadLine();
+            //Console.WriteLine($"Editing attendance record: Date: {selectedRecord.Time.ToShortDateString()}, Time: {selectedRecord.Time.ToShortTimeString()}, Status: {selectedRecord.Status}");
+            //UserInterfaceRecord.GetAttendanceStatus();
+            //string statusChoice = Console.ReadLine();
 
             if (!Enum.TryParse(statusChoice, out AttendanceStatus newStatus))
             {
