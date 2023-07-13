@@ -5,9 +5,9 @@ namespace Attendance_Models
 {
     public class StudentAttendanceRecord
     {
-        public string StudentName { get; }
-        public string StudentNumber { get; }
-        public List<RecordDateTime> StudentList { get; }
+        public string StudentName { get; set; }
+        public string StudentNumber { get; set; }
+        public List<RecordDateTime> StudentList { get; set; }
         public StudentAttendanceRecord(string studentName, string studentNumber)
         {
             StudentName = studentName;

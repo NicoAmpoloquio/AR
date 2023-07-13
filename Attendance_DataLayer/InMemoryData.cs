@@ -6,7 +6,7 @@ namespace Attendance_DataLayer
 {
     public class Students
     {
-        private static List<StudentAttendanceRecord> StudentList = new List<StudentAttendanceRecord>();
+        public static List<StudentAttendanceRecord> StudentList = new List<StudentAttendanceRecord>();
 
         public static void InMemoryDataStudents()
         {

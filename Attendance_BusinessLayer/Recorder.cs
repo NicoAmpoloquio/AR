@@ -8,7 +8,6 @@ namespace Attendance_BusinessLayer
 {
     public class AttendanceManager
     {
-        public static List<StudentAttendanceRecord> StudentList = new List<StudentAttendanceRecord>();
         public static void RecordAttendance()
         {
             UserInterfaceRecord.GetStudentName();
