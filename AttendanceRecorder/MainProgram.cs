@@ -13,7 +13,7 @@ namespace AttendanceRecorder
         {
             UserInterfaceMenu.DisplayMainTitle();
 
-            Students.InMemoryDataStudents();
+            InMemoryData.InMemoryDataStudents();
 
             while (true)
             {

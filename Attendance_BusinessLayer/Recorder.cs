@@ -10,13 +10,13 @@ namespace Attendance_BusinessLayer
     {
         public static void RecordAttendance()
         {
-            UserInterfaceRecord.GetStudentName();
-            string studentName = Console.ReadLine();
-
             UserInterfaceRecord.GetStudentNumber();
             string studentNumber = Console.ReadLine();
 
-            StudentAttendanceRecord studentRecord = Students.StudentList.Find(record => record.StudentName == studentName && record.StudentNumber == studentNumber);
+            UserInterfaceRecord.GetStudentName();
+            string studentName = Console.ReadLine();
+
+            StudentAttendanceRecord studentRecord = InMemoryData.StudentList.Find(record => record.StudentName == studentName && record.StudentNumber == studentNumber);
 
             if (studentRecord == null)
             {
@@ -35,18 +35,18 @@ namespace Attendance_BusinessLayer
 
             DateTime currentTime = DateTime.Now;
 
-            studentRecord.StudentList.Add(new RecordDateTime(currentTime, studentName, studentNumber, attendanceStatus));
+            studentRecord.StudentList.Add(new RecordDateTime(studentNumber, studentName, currentTime, attendanceStatus));
             UserInterfaceMessage.DisplayAttendanceMarkedMessage();
         }
         public static void EditAttendance()
         {
-            UserInterfaceRecord.GetStudentName();
-            string studentName = Console.ReadLine();
-
             UserInterfaceRecord.GetStudentNumber();
             string studentNumber = Console.ReadLine();
 
-            StudentAttendanceRecord studentRecord = Students.StudentList.Find(record => record.StudentName == studentName && record.StudentNumber == studentNumber);
+            UserInterfaceRecord.GetStudentName();
+            string studentName = Console.ReadLine();
+
+            StudentAttendanceRecord studentRecord = InMemoryData.StudentList.Find(record => record.StudentNumber == studentNumber && record.StudentName == studentName);
 
             if (studentRecord == null)
             {
@@ -54,7 +54,7 @@ namespace Attendance_BusinessLayer
                 return;
             }
 
-            Console.WriteLine($"Attendance records for {studentName} ({studentNumber}):");
+            Console.WriteLine($"Attendance records for {studentNumber} ({studentName}):");
             int index = 0;
             foreach (var record in studentRecord.StudentList)
             {
@@ -101,13 +101,13 @@ namespace Attendance_BusinessLayer
         }
         public static void ViewAttendanceRecordsByStudent()
         {
-            UserInterfaceRecord.GetStudentName();
-            string studentName = Console.ReadLine();
-
             UserInterfaceRecord.GetStudentNumber();
             string studentNumber = Console.ReadLine();
 
-            StudentAttendanceRecord studentRecord = Students.StudentList.Find(record => record.StudentName == studentName && record.StudentNumber == studentNumber);
+            UserInterfaceRecord.GetStudentName();
+            string studentName = Console.ReadLine();
+
+            StudentAttendanceRecord studentRecord = InMemoryData.StudentList.Find(record => record.StudentNumber == studentNumber && record.StudentName == studentName);
 
             if (studentRecord == null)
             {
@@ -115,25 +115,25 @@ namespace Attendance_BusinessLayer
                 return;
             }
 
-            Console.WriteLine($"Attendance records for {studentName} ({studentNumber}):");
+            Console.WriteLine($"Attendance records for {studentNumber} ({studentName}):");
             foreach (var record in studentRecord.StudentList)
             {
                 Console.WriteLine($"Date: {record.Time.ToShortDateString()}, Time: {record.Time.ToShortTimeString()}, Status: {record.Status}");
             }
 
-            UserInterfaceView.DisplayAttendanceRecords(studentName, studentRecord.StudentList);
+            UserInterfaceView.DisplayAttendanceRecords(studentNumber, studentRecord.StudentList);
         }
         public static void ViewAttendanceRecordsForAllStudents()
         {
-            Console.WriteLine("Attendance records for all students:");
+            UserInterfaceMessage.DisplayAttendanceRecordMessage();
 
-            if (Students.StudentList.Count == 0)
+            if (InMemoryData.StudentList.Count == 0)
             {
-                Console.WriteLine("No attendance records found for any student.");
+                UserInterfaceMessage.AllStudentsStatus();
                 return;
             }
 
-            foreach (var student in Students.StudentList)
+            foreach (var student in InMemoryData.StudentList)
             {
                 Console.WriteLine($"Student: {student.StudentName}");
                 foreach (var record in student.StudentList)

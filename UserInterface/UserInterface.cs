@@ -95,6 +95,10 @@ namespace UserInterface
         {
             Console.WriteLine("Attendance edited successfully.");
         }
+        public static void DisplayAttendanceRecordMessage()
+        {
+            Console.WriteLine("Attendance records for all students:");
+        }
         public static void DisplayAttendanceInvalidEditMessage()
         {
             Console.WriteLine("Invalid choice! Attendance not edited.");
@@ -102,6 +106,10 @@ namespace UserInterface
         public static void AttendanceStatus()
         {
             Console.WriteLine("No attendance records found for this student.");
+        }
+        public static void AllStudentsStatus()
+        {
+            Console.WriteLine("No attendance records found for any student.");
         }
         public static void DisplayNoRecordsFoundMessage()
         {

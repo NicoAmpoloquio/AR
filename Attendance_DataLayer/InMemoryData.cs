@@ -4,7 +4,7 @@ using Attendance_Models;
 
 namespace Attendance_DataLayer
 {
-    public class Students
+    public class InMemoryData
     {
         public static List<StudentAttendanceRecord> StudentList = new List<StudentAttendanceRecord>();
 
