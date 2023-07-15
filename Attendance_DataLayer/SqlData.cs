@@ -2,20 +2,40 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using UserInterface;
 
 namespace Attendance_DataLayer
 {
-    public class SqlData : InMemoryData
+    public class SqlData
     {
         static string connectionString
-        = "Data Source = localhost; Initial Catalog = PUPAttendance; Integrated Security = True;";
+        = "Server = DESKTOP-PT80VE9\\SQLEXPRESS; Initial Catalog = PUPAttendance; Integrated Security = True;";
         //= "Server=tcp://,1433;Database=PUPAttendance;User Id=sa;Password=PUPAttendance@2023!;";
+        static string selectStatement = "SELECT TOP (1000) [StudentNumber]\r\n     ,[StudentName]\r\n      ,[Date]\r\n      ,[Status]\r\n  FROM [PUPAttendance].[dbo].[Attendance]";
 
         static SqlConnection sqlConnection;
 
         public SqlData()
         {
             sqlConnection = new SqlConnection(connectionString);
+        }
+
+        public static void RecordAttendance()
+        {
+
+        }
+        public static void EditAttendance()
+        {
+
+        } 
+        public static void ViewAttendanceRecordsByStudent()
+        {
+
+        }
+
+        public static void ViewAttendanceRecordsForAllStudents()
+        {
+
         }
     }
 }

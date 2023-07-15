@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Attendance_DataLayer\Attendance_DataLayer.csproj" />
     <ProjectReference Include="..\Attendance_Models\Attendance_Models.csproj" />
   </ItemGroup>
 

@@ -1,5 +1,4 @@
-﻿using Attendance_DataLayer;
-using Attendance_Models;
+﻿using Attendance_Models;
 using System;
 using System.Collections.Generic;
 using System.Net;
