@@ -21,6 +21,7 @@ namespace Attendance_BusinessLayer
             if (studentRecord == null)
             {
                 UserInterfaceMessage.DisplayInvalidStudentNameMessage();
+                return;
             }
 
             //UserInterfaceRecord.GetAttendanceStatus();
@@ -39,11 +40,13 @@ namespace Attendance_BusinessLayer
         }
         public static void EditAttendance()
         {
-            UserInterfaceRecord.GetStudentNumber();
-            string studentNumber = Console.ReadLine();
+            //UserInterfaceRecord.GetStudentNumber();
+            //string studentNumber = Console.ReadLine();
+            string studentNumber = UserInterfaceRecord.GetStudentNumber();
 
-            UserInterfaceRecord.GetStudentName();
-            string studentName = Console.ReadLine();
+            //UserInterfaceRecord.GetStudentName();
+            //string studentName = Console.ReadLine();
+            string studentName = UserInterfaceRecord.GetStudentName();
 
             StudentAttendanceRecord studentRecord = InMemoryData.StudentList.Find(record => record.StudentNumber == studentNumber && record.StudentName == studentName);
 
@@ -139,7 +142,7 @@ namespace Attendance_BusinessLayer
                 {
                     Console.WriteLine($"Date: {record.Time.ToShortDateString()}, Time: {record.Time.ToShortTimeString()}, Status: {record.Status}");
                 }
-                Console.WriteLine();
+                //Console.WriteLine();
             }
         }
     }
