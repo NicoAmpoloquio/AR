@@ -10,10 +10,7 @@ namespace Attendance_BusinessLayer
     {
         public static void RecordAttendance()
         {
-            //UserInterfaceRecord.GetStudentNumber();
             string studentNumber = UserInterfaceRecord.GetStudentNumber();
-
-            //UserInterfaceRecord.GetStudentName();
             string studentName = UserInterfaceRecord.GetStudentName();
 
             StudentAttendanceRecord studentRecord = InMemoryData.StudentList.Find(record => record.StudentName == studentName && record.StudentNumber == studentNumber);
@@ -23,9 +20,6 @@ namespace Attendance_BusinessLayer
                 UserInterfaceMessage.DisplayInvalidStudentNameMessage();
                 return;
             }
-
-            //UserInterfaceRecord.GetAttendanceStatus();
-            //string statusChoice = Console.ReadLine();
             string statusChoice = UserInterfaceRecord.GetAttendanceStatus();
 
             if (!Enum.TryParse(statusChoice, out AttendanceStatus attendanceStatus))
@@ -40,12 +34,7 @@ namespace Attendance_BusinessLayer
         }
         public static void EditAttendance()
         {
-            //UserInterfaceRecord.GetStudentNumber();
-            //string studentNumber = Console.ReadLine();
             string studentNumber = UserInterfaceRecord.GetStudentNumber();
-
-            //UserInterfaceRecord.GetStudentName();
-            //string studentName = Console.ReadLine();
             string studentName = UserInterfaceRecord.GetStudentName();
 
             StudentAttendanceRecord studentRecord = InMemoryData.StudentList.Find(record => record.StudentNumber == studentNumber && record.StudentName == studentName);
@@ -56,7 +45,7 @@ namespace Attendance_BusinessLayer
                 return;
             }
 
-            Console.WriteLine($"Attendance records for {studentNumber} ({studentName}):");
+            Console.WriteLine($"Attendance records for {studentName} ({studentNumber}):");
             int index = 0;
             foreach (var record in studentRecord.StudentList)
             {
@@ -88,8 +77,7 @@ namespace Attendance_BusinessLayer
             RecordDateTime selectedRecord = studentRecord.StudentList[selectedIndex];
 
             Console.WriteLine($"Editing attendance record: Date: {selectedRecord.Time.ToShortDateString()}, Time: {selectedRecord.Time.ToShortTimeString()}, Status: {selectedRecord.Status}");
-            UserInterfaceRecord.GetAttendanceStatus();
-            string statusChoice = Console.ReadLine();
+            string statusChoice = UserInterfaceRecord.GetAttendanceStatus();
 
             if (!Enum.TryParse(statusChoice, out AttendanceStatus newStatus))
             {
@@ -103,10 +91,7 @@ namespace Attendance_BusinessLayer
         }
         public static void ViewAttendanceRecordsByStudent()
         {
-            //UserInterfaceRecord.GetStudentNumber();
             string studentNumber = UserInterfaceRecord.GetStudentNumber();
-
-            //UserInterfaceRecord.GetStudentName();
             string studentName = UserInterfaceRecord.GetStudentName();
 
             StudentAttendanceRecord studentRecord = InMemoryData.StudentList.Find(record => record.StudentNumber == studentNumber && record.StudentName == studentName);
@@ -116,14 +101,8 @@ namespace Attendance_BusinessLayer
                 UserInterfaceMessage.DisplayNoRecordsFoundMessage();
                 return;
             }
-
-            Console.WriteLine($"Attendance records for ({studentName}):");
-            foreach (var record in studentRecord.StudentList)
-            {
-                Console.WriteLine($"Date: {record.Time.ToShortDateString()}, Time: {record.Time.ToShortTimeString()}, Status: {record.Status}");
-            }
-
-           // UserInterfaceView.DisplayAttendanceRecords(studentName, studentRecord.StudentList);
+             
+            UserInterfaceView.DisplayAttendanceRecords(studentName, studentRecord.StudentList);
         }
         public static void ViewAttendanceRecordsForAllStudents()
         {
@@ -142,7 +121,6 @@ namespace Attendance_BusinessLayer
                 {
                     Console.WriteLine($"Date: {record.Time.ToShortDateString()}, Time: {record.Time.ToShortTimeString()}, Status: {record.Status}");
                 }
-                //Console.WriteLine();
             }
         }
     }

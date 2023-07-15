@@ -36,6 +36,7 @@ namespace UserInterface
         }
         public static string GetAttendanceStatus()
         {
+
             Console.WriteLine("Select attendance status:");
             Console.WriteLine("1. Present");
             Console.WriteLine("2. Absent");
