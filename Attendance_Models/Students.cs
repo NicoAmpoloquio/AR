@@ -13,7 +13,6 @@ namespace Attendance_Models
         {
             StudentName = studentName;
             StudentNumber = studentNumber;
-            
             StudentList = new List<RecordDateTime>();
         }
     }

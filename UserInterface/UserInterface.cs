@@ -1,7 +1,6 @@
 ﻿using Attendance_Models;
 using System;
 using System.Collections.Generic;
-using System.Net;
 
 namespace UserInterface
 {
@@ -25,21 +24,25 @@ namespace UserInterface
     }
     public class UserInterfaceRecord
     {
-        public static void GetStudentName()
+        public static string GetStudentName()
         {
             Console.Write("Enter student name: ");
+            return Console.ReadLine();
         }
-        public static void GetStudentNumber()
+        public static string GetStudentNumber()
         {
             Console.Write("Enter student number: ");
+            return Console.ReadLine();
         }
-        public static void GetAttendanceStatus()
+        public static string GetAttendanceStatus()
         {
             Console.WriteLine("Select attendance status:");
             Console.WriteLine("1. Present");
             Console.WriteLine("2. Absent");
             Console.WriteLine("3. Excused");
             Console.Write("Enter your choice: ");
+
+            return Console.ReadLine();
         }
     }
     public class UserInterfaceEdit
