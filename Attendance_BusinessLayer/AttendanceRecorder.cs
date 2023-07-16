@@ -7,6 +7,13 @@ namespace Attendance_BusinessRules
 {
     public class AttendanceRecorder
     {
+        private SqlData sqlData;
+
+        public AttendanceRecorder()
+        {
+            sqlData = new SqlData();
+        }
+
         public bool AddAttendance(string number, string name, AttendanceStatus status)
         {
             List<Student> students = InMemoryData.GetStudents();
@@ -24,8 +31,7 @@ namespace Attendance_BusinessRules
                 DateTime = DateTime.Now
             };
 
-            InMemoryData.AddAttendanceRecord(attendance);
-            return true;
+            return sqlData.AddAttendance(attendance);
         }
         public bool EditAttendance(string number, string name, int attendanceIndex, AttendanceStatus newStatus)
         {
@@ -37,34 +43,22 @@ namespace Attendance_BusinessRules
                 return false;
             }
 
-            List<AttendanceRecord> studentAttendance = InMemoryData.GetAttendanceRecords().FindAll(a => a.Student == student);
+            List<AttendanceRecord> studentAttendance = sqlData.GetStudentAttendance(number, name);
 
             if (attendanceIndex < 1 || attendanceIndex > studentAttendance.Count)
             {
                 return false;
             }
 
-            studentAttendance[attendanceIndex - 1].Status = newStatus;
-            return true;
+            return sqlData.EditAttendance(number, newStatus);
         }
         public List<AttendanceRecord> GetStudentAttendance(string number, string name)
         {
-            List<Student> students = InMemoryData.GetStudents();
-            Student student = students.Find(s => s.StudentNumber == number && s.StudentName == name);
-
-            if (student == null)
-            {
-                return null;
-            }
-
-            List<AttendanceRecord> studentAttendance = InMemoryData.GetAttendanceRecords().FindAll(a => a.Student == student);
-            return studentAttendance;
+            return sqlData.GetStudentAttendance(number, name);
         }
         public List<AttendanceRecord> GetAllStudentsAttendance()
         {
-            List<Student> students = InMemoryData.GetStudents();
-            List<AttendanceRecord> attendanceRecords = InMemoryData.GetAttendanceRecords();
-            return attendanceRecords;
+            return sqlData.GetAllStudentsAttendance();
         }
     }
 }

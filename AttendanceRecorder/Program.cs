@@ -86,7 +86,6 @@ namespace Program
                 Console.WriteLine("Failed to add attendance. Student does not exist.");
             }
         }
-
         static void EditAttendanceUI(AttendanceRecorder recorder)
         {
             Console.Write("Enter student number: ");
@@ -142,7 +141,6 @@ namespace Program
                 Console.WriteLine("Failed to update attendance. Invalid option selected or student does not exist.");
             }
         }
-
         static void ViewStudentAttendanceUI(AttendanceRecorder recorder)
         {
             Console.Write("Enter student number: ");
@@ -166,7 +164,6 @@ namespace Program
                 Console.WriteLine($"{attendance.DateTime} - {attendance.Status}");
             }
         }
-
         static void ViewAllStudentsAttendanceUI(AttendanceRecorder recorder)
         {
             List<AttendanceRecord> attendanceRecords = recorder.GetAllStudentsAttendance();
