@@ -7,15 +7,37 @@ namespace Attendance_BusinessRules
 {
     public class AttendanceRecorder
     {
-        public AttendanceRecord AddAttendance(string studentNumber, string studentName, AttendanceStatus status)
+        public bool AddAttendance()
         {
-            List<Student> students = InMemoryData.GetStudents();
-            Student student = students.Find(s => s.StudentNumber == studentNumber && s.StudentName == studentName);
+            Console.WriteLine("Enter student details:");
+            Console.Write("Student number: ");
+            string number = Console.ReadLine();
+
+            Console.Write("Student name: ");
+            string name = Console.ReadLine();
+
+            List<Student> students = AttendanceData.GetStudents();
+            Student student = students.Find(s => s.StudentNumber == number && s.StudentName == name);
 
             if (student == null)
             {
-                return null;
+                Console.WriteLine("Student does not exist.");
+                return false;
             }
+
+            Console.WriteLine("Select attendance status:");
+            Console.WriteLine("1. Present");
+            Console.WriteLine("2. Absent");
+            Console.WriteLine("3. Excused");
+
+            int statusOption;
+            if (!int.TryParse(Console.ReadLine(), out statusOption) || statusOption < 1 || statusOption > 3)
+            {
+                Console.WriteLine("Invalid option selected.");
+                return false;
+            }
+
+            AttendanceStatus status = (AttendanceStatus)(statusOption - 1);
 
             AttendanceRecord attendance = new AttendanceRecord
             {
@@ -24,49 +46,116 @@ namespace Attendance_BusinessRules
                 DateTime = DateTime.Now
             };
 
-            InMemoryData.AddAttendanceRecord(attendance);
-            return attendance;
+            AttendanceData.AddAttendanceRecord(attendance);
+            Console.WriteLine("Attendance added successfully.");
+            return true;
         }
 
-        public void EditAttendance(string studentNumber, string studentName, int attendanceIndex, AttendanceStatus newStatus)
+        public bool EditAttendance()
         {
-            List<Student> students = InMemoryData.GetStudents();
-            Student student = students.Find(s => s.StudentNumber == studentNumber && s.StudentName == studentName);
+            Console.Write("Enter student number: ");
+            string number = Console.ReadLine();
+
+            Console.Write("Enter student name: ");
+            string name = Console.ReadLine();
+
+            List<Student> students = AttendanceData.GetStudents();
+            Student student = students.Find(s => s.StudentNumber == number && s.StudentName == name);
 
             if (student == null)
             {
-                return;
+                Console.WriteLine("Student does not exist.");
+                return false;
             }
 
-            List<AttendanceRecord> studentAttendance = InMemoryData.GetAttendanceRecords().FindAll(a => a.Student == student);
+            Console.WriteLine("Select attendance to edit:");
+            List<AttendanceRecord> studentAttendance = AttendanceData.GetAttendanceRecords().FindAll(a => a.Student == student);
 
-            if (attendanceIndex < 1 || attendanceIndex > studentAttendance.Count)
+            for (int i = 0; i < studentAttendance.Count; i++)
             {
-                return;
+                Console.WriteLine($"{i + 1}. {studentAttendance[i].DateTime} - {studentAttendance[i].Status}");
             }
+
+            int attendanceIndex;
+            if (!int.TryParse(Console.ReadLine(), out attendanceIndex) || attendanceIndex < 1 || attendanceIndex > studentAttendance.Count)
+            {
+                Console.WriteLine("Invalid option selected.");
+                return false;
+            }
+
+            Console.WriteLine("Select new attendance status:");
+            Console.WriteLine("1. Present");
+            Console.WriteLine("2. Absent");
+            Console.WriteLine("3. Excused");
+
+            int statusOption;
+            if (!int.TryParse(Console.ReadLine(), out statusOption) || statusOption < 1 || statusOption > 3)
+            {
+                Console.WriteLine("Invalid option selected.");
+                return false;
+            }
+
+            AttendanceStatus newStatus = (AttendanceStatus)(statusOption - 1);
 
             studentAttendance[attendanceIndex - 1].Status = newStatus;
+            Console.WriteLine("Attendance updated successfully.");
+            return true;
         }
 
-        public List<AttendanceRecord> GetStudentAttendance(string studentNumber, string studentName)
+        public void ViewStudentAttendance()
         {
-            List<Student> students = InMemoryData.GetStudents();
-            Student student = students.Find(s => s.StudentNumber == studentNumber && s.StudentName == studentName);
+            Console.Write("Enter student number: ");
+            string number = Console.ReadLine();
+
+            Console.Write("Enter student name: ");
+            string name = Console.ReadLine();
+
+            List<Student> students = AttendanceData.GetStudents();
+            Student student = students.Find(s => s.StudentNumber == number && s.StudentName == name);
 
             if (student == null)
             {
-                return null;
+                Console.WriteLine("Student does not exist.");
+                return;
             }
 
-            List<AttendanceRecord> studentAttendance = InMemoryData.GetAttendanceRecords().FindAll(a => a.Student == student);
-            return studentAttendance;
+            Console.WriteLine($"Attendance for {student.StudentName} ({student.StudentNumber}):");
+
+            List<AttendanceRecord> studentAttendance = AttendanceData.GetAttendanceRecords().FindAll(a => a.Student == student);
+
+            foreach (AttendanceRecord attendance in studentAttendance)
+            {
+                Console.WriteLine($"{attendance.DateTime} - {attendance.Status}");
+            }
         }
 
-        public List<AttendanceRecord> GetAllStudentsAttendance()
+        public void ViewAllStudentsAttendance()
         {
-            List<Student> students = InMemoryData.GetStudents();
-            List<AttendanceRecord> attendanceRecords = InMemoryData.GetAttendanceRecords();
-            return attendanceRecords;
+            List<Student> students = AttendanceData.GetStudents();
+            List<AttendanceRecord> attendanceRecords = AttendanceData.GetAttendanceRecords();
+
+            if (attendanceRecords.Count == 0)
+            {
+                Console.WriteLine("No attendance records available.");
+                return;
+            }
+
+            Console.WriteLine("Attendance Records");
+            Console.WriteLine("-----------------");
+
+            foreach (Student student in students)
+            {
+                Console.WriteLine($"{student.StudentName} ({student.StudentNumber}):");
+
+                List<AttendanceRecord> studentAttendance = attendanceRecords.FindAll(a => a.Student == student);
+
+                foreach (AttendanceRecord attendance in studentAttendance)
+                {
+                    Console.WriteLine($"{attendance.DateTime} - {attendance.Status}");
+                }
+
+                Console.WriteLine();
+            }
         }
     }
 }
