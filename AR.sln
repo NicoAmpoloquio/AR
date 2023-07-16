@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AttendanceRecorder", "AttendanceRecorder\AttendanceRecorder.csproj", "{F0DDD069-95F7-4C7D-A737-3B0C826A7CCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AttendanceRecorder", "AttendanceRecorder\AttendanceRecorder.csproj", "{F0DDD069-95F7-4C7D-A737-3B0C826A7CCB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Attendance_BusinessLayer", "Attendance_BusinessLayer\Attendance_BusinessLayer.csproj", "{E6AF6191-38F3-4D1E-8ADD-3E9FD7FE019F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Attendance_BusinessLayer", "Attendance_BusinessLayer\Attendance_BusinessLayer.csproj", "{E6AF6191-38F3-4D1E-8ADD-3E9FD7FE019F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Attendance_DataLayer", "Attendance_DataLayer\Attendance_DataLayer.csproj", "{19A1B549-CD70-49CC-B3DE-0604168FA25C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Attendance_DataLayer", "Attendance_DataLayer\Attendance_DataLayer.csproj", "{19A1B549-CD70-49CC-B3DE-0604168FA25C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Attendance_Models", "Attendance_Models\Attendance_Models.csproj", "{AE3018C8-AF18-435F-B03C-30201B9BEA13}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserInterface", "UserInterface\UserInterface.csproj", "{ABAF1490-F823-4C6F-AE91-B9EAF28A0AF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Attendance_Models", "Attendance_Models\Attendance_Models.csproj", "{AE3018C8-AF18-435F-B03C-30201B9BEA13}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +33,6 @@ Global
 		{AE3018C8-AF18-435F-B03C-30201B9BEA13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE3018C8-AF18-435F-B03C-30201B9BEA13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE3018C8-AF18-435F-B03C-30201B9BEA13}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ABAF1490-F823-4C6F-AE91-B9EAF28A0AF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ABAF1490-F823-4C6F-AE91-B9EAF28A0AF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ABAF1490-F823-4C6F-AE91-B9EAF28A0AF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ABAF1490-F823-4C6F-AE91-B9EAF28A0AF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

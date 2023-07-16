@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Attendance_Models
 {
-    public enum AttendanceStatus
+    public class Student
     {
-        Present = 1,
-        Absent = 2,
-        Excused = 3
+        public string StudentNumber { get; set; }
+        public string StudentName { get; set; }
+
     }
 }
