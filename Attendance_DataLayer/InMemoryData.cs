@@ -4,12 +4,12 @@ using Attendance_Models;
 
 namespace Attendance_DataLayer
 {
-    public static class AttendanceData
+    public static class InMemoryData
     {
         static List<Student> students = new List<Student>();
         static List<AttendanceRecord> attendanceRecords = new List<AttendanceRecord>();
 
-        public static void InitializeStudents()
+        public static void InMemoryStudents()
         {
                 Student student1 = new Student
                 {
