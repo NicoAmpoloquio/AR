@@ -22,9 +22,10 @@ namespace Program
                 Console.WriteLine("\nPlease select an option:");
                 Console.WriteLine("1. Add attendance");
                 Console.WriteLine("2. Edit attendance");
-                Console.WriteLine("3. View student's attendance");
-                Console.WriteLine("4. View all students' attendance");
-                Console.WriteLine("5. Exit");
+                Console.WriteLine("3. Delete attendance");
+                Console.WriteLine("4. View student's attendance");
+                Console.WriteLine("5. View all students' attendance");
+                Console.WriteLine("6. Exit");
 
                 string input = Console.ReadLine();
                 Console.WriteLine();
@@ -38,12 +39,15 @@ namespace Program
                         EditAttendanceUI(recorder);
                         break;
                     case "3":
-                        ViewStudentAttendanceUI(recorder);
+                        DeleteAttendanceUI(recorder);
                         break;
                     case "4":
-                        ViewAllStudentsAttendanceUI(recorder);
+                        ViewStudentAttendanceUI(recorder);
                         break;
                     case "5":
+                        ViewAllStudentsAttendanceUI(recorder);
+                        break;
+                    case "6":
                         Console.WriteLine("Exiting program...");
                         return;
                     default:
@@ -52,9 +56,32 @@ namespace Program
                 }
             }
         }
+        static (string, string) AskForAYAndSection()
+        {
+            Console.Write("Enter Academic Year (A.Y): ");
+            string academicYear = Console.ReadLine();
 
+            Console.Write("Enter Section: ");
+            string section = Console.ReadLine();
+
+            return (academicYear, section);
+        }
         static void AddAttendanceUI(AttendanceRecorder recorder)
         {
+            var (academicYear, section) = AskForAYAndSection();
+
+            if (academicYear != InMemoryData.AcademicYear || section != InMemoryData.Section)
+            {
+                Console.WriteLine("Invalid Academic Year (A.Y) or Section.");
+                return;
+            }
+
+            if (academicYear != InMemoryData.AcademicYear || section != InMemoryData.Section)
+            {
+                Console.WriteLine("Invalid Academic Year (A.Y) or Section. Please try again.");
+                return;
+            }
+
             Console.WriteLine("Enter student details:");
             Console.Write("Student number: ");
             string number = Console.ReadLine();
@@ -88,6 +115,14 @@ namespace Program
         }
         static void EditAttendanceUI(AttendanceRecorder recorder)
         {
+            var (academicYear, section) = AskForAYAndSection();
+
+            if (academicYear != InMemoryData.AcademicYear || section != InMemoryData.Section)
+            {
+                Console.WriteLine("Invalid Academic Year (A.Y) or Section.");
+                return;
+            }
+
             Console.Write("Enter student number: ");
             string number = Console.ReadLine();
 
@@ -141,8 +176,64 @@ namespace Program
                 Console.WriteLine("Failed to update attendance. Invalid option selected or student does not exist.");
             }
         }
+        static void DeleteAttendanceUI(AttendanceRecorder recorder)
+        {
+            var (academicYear, section) = AskForAYAndSection();
+
+            if (academicYear != InMemoryData.AcademicYear || section != InMemoryData.Section)
+            {
+                Console.WriteLine("Invalid Academic Year (A.Y) or Section.");
+                return;
+            }
+
+            Console.Write("Enter student number: ");
+            string number = Console.ReadLine();
+
+            Console.Write("Enter student name: ");
+            string name = Console.ReadLine();
+
+            List<AttendanceRecord> studentAttendance = recorder.GetStudentAttendance(number, name);
+
+            if (studentAttendance == null)
+            {
+                Console.WriteLine("Student does not exist.");
+                return;
+            }
+
+            Console.WriteLine("Select attendance to delete:");
+
+            for (int i = 0; i < studentAttendance.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {studentAttendance[i].DateTime} - {studentAttendance[i].Status}");
+            }
+
+            Console.Write("Enter the attendance index to delete: ");
+            int attendanceIndex;
+            if (!int.TryParse(Console.ReadLine(), out attendanceIndex) || attendanceIndex < 1 || attendanceIndex > studentAttendance.Count)
+            {
+                Console.WriteLine("Invalid option selected.");
+                return;
+            }
+
+            bool success = recorder.DeleteAttendance(number, name, attendanceIndex);
+            if (success)
+            {
+                Console.WriteLine("Attendance deleted successfully.");
+            }
+            else
+            {
+                Console.WriteLine("Failed to delete attendance. Invalid option selected or student does not exist.");
+            }
+        }
         static void ViewStudentAttendanceUI(AttendanceRecorder recorder)
         {
+            var (academicYear, section) = AskForAYAndSection();
+
+            if (academicYear != InMemoryData.AcademicYear || section != InMemoryData.Section)
+            {
+                Console.WriteLine("Invalid Academic Year (A.Y) or Section.");
+                return;
+            }
             Console.Write("Enter student number: ");
             string number = Console.ReadLine();
 
@@ -166,6 +257,14 @@ namespace Program
         }
         static void ViewAllStudentsAttendanceUI(AttendanceRecorder recorder)
         {
+            var (academicYear, section) = AskForAYAndSection();
+
+            if (academicYear != InMemoryData.AcademicYear || section != InMemoryData.Section)
+            {
+                Console.WriteLine("Invalid Academic Year (A.Y) or Section.");
+                return;
+            }
+
             List<AttendanceRecord> attendanceRecords = recorder.GetAllStudentsAttendance();
 
             if (attendanceRecords.Count == 0)
@@ -184,6 +283,5 @@ namespace Program
                 Console.WriteLine();
             }
         }
-
     }
 }
