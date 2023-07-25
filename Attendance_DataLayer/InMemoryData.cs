@@ -9,6 +9,9 @@ namespace Attendance_DataLayer
         static List<Student> students = new List<Student>();
         static List<AttendanceRecord> attendanceRecords = new List<AttendanceRecord>();
 
+        public static string AcademicYear { get; set; } = "2022-2023";
+        public static string Section { get; set; } = "BSIT 2-1";
+
         public static void InMemoryStudents()
         {
                 Student student1 = new Student
@@ -53,7 +56,13 @@ namespace Attendance_DataLayer
                 students.Add(student4);
                 students.Add(student5);
                 students.Add(student6);
+
+            foreach (Student student in students)
+            {
+                student.AcademicYear = AcademicYear;
+                student.Section = Section;
             }
+        }
 
         public static List<Student> GetStudents()
         {

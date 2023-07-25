@@ -34,15 +34,31 @@ namespace Attendance_DataLayer
                 return rowsAffected > 0;
             }
         }
-        public bool EditAttendance(string number, AttendanceStatus newStatus)
+        public bool EditAttendance(AttendanceRecord attendance)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "UPDATE Attendance SET Status = @Status WHERE StudentNumber = @StudentNumber";
+                string query = "UPDATE Attendance SET Status = @Status WHERE StudentNumber = @StudentNumber AND Date = @Date";
 
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@Status", newStatus.ToString());
-                command.Parameters.AddWithValue("@StudentNumber", number);
+                command.Parameters.AddWithValue("@Status", attendance.Status.ToString());
+                command.Parameters.AddWithValue("@StudentNumber", attendance.Student.StudentNumber);
+                command.Parameters.AddWithValue("@Date", attendance.DateTime);
+
+                connection.Open();
+                int rowsAffected = command.ExecuteNonQuery();
+
+                return rowsAffected > 0;
+            }
+        }
+        public bool DeleteAttendance(DateTime attendanceDateTime)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "DELETE FROM Attendance WHERE Date = @Date";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Date", attendanceDateTime);
 
                 connection.Open();
                 int rowsAffected = command.ExecuteNonQuery();

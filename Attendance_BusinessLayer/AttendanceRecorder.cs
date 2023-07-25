@@ -5,6 +5,7 @@ using Attendance_DataLayer;
 
 namespace Attendance_BusinessRules
 {
+
     public class AttendanceRecorder
     {
         private SqlData sqlData;
@@ -49,8 +50,30 @@ namespace Attendance_BusinessRules
             {
                 return false;
             }
+            AttendanceRecord selectedAttendance = studentAttendance[attendanceIndex - 1];
 
-            return sqlData.EditAttendance(number, newStatus);
+            selectedAttendance.Status = newStatus;
+
+            return sqlData.EditAttendance(selectedAttendance);
+        }
+        public bool DeleteAttendance(string number, string name, int attendanceIndex)
+        {
+            List<Student> students = InMemoryData.GetStudents();
+            Student student = students.Find(s => s.StudentNumber == number && s.StudentName == name);
+
+            if (student == null)
+            {
+                return false;
+            }
+
+            List<AttendanceRecord> studentAttendance = sqlData.GetStudentAttendance(number, name);
+
+            if (attendanceIndex < 1 || attendanceIndex > studentAttendance.Count)
+            {
+                return false;
+            }
+
+            return sqlData.DeleteAttendance(studentAttendance[attendanceIndex - 1].DateTime);
         }
         public List<AttendanceRecord> GetStudentAttendance(string number, string name)
         {

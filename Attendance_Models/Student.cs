@@ -10,6 +10,7 @@ namespace Attendance_Models
     {
         public string StudentNumber { get; set; }
         public string StudentName { get; set; }
-
+        public string AcademicYear { get; set; }
+        public string Section { get; set; }
     }
 }
