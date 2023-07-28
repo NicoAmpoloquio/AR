@@ -7,8 +7,8 @@ namespace Attendance_DataLayer
 {
     public class SqlData
     {
-        static string connectionString = "Server=DESKTOP-PT80VE9\\SQLEXPRESS;Initial Catalog=PUPAttendance;Integrated Security=True;";
-        
+        static string connectionString = "Server=DESKTOP-PT80VE9\\SQLEXPRESS;Initial Catalog=PUPAttendance;Integrated Security=True;"; //Local Connection
+                                     //= "Server=tcp:1433;Database=PUPAttendance;User Id=sa;Password=PUPAttendance@2023!;"; //Server Connection
         static SqlConnection sqlConnection;
 
         public SqlData()

@@ -68,15 +68,5 @@ namespace Attendance_DataLayer
         {
             return students;
         }
-
-        public static List<AttendanceRecord> GetAttendanceRecords()
-        {
-            return attendanceRecords;
-        }
-
-        public static void AddAttendanceRecord(AttendanceRecord attendance)
-        {
-            attendanceRecords.Add(attendance);
-        }
     }
 }
